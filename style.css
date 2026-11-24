@@ -1,94 +1,114 @@
-@font-face {
-  font-family: "Noto Serif";
-  src: url(fonts/noto-serif-latin.woff2) format("woff2");
-  font-weight: 400 700;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Noto Serif";
-  src: url(fonts/noto-serif-latin-italic.woff2) format("woff2");
-  font-style: italic;
-  font-display: swap;
-}
+@font-face { font-family: "Bodoni Moda"; src: url(fonts/bodoni-moda-italic.woff2) format("woff2"); font-weight: 400 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Caslon Display"; src: url(fonts/caslon-display.woff2) format("woff2"); font-display: swap; }
+@font-face { font-family: "Caslon Text"; src: url(fonts/caslon-text.woff2) format("woff2"); font-display: swap; }
+@font-face { font-family: "Caslon Text"; src: url(fonts/caslon-text-bold.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Caslon Text"; src: url(fonts/caslon-text-italic.woff2) format("woff2"); font-style: italic; font-display: swap; }
+@font-face { font-family: "Albert Sans"; src: url(fonts/albert-sans.woff2) format("woff2"); font-weight: 300 800; font-display: swap; }
 
+/* Oxblood panels (a redder take on the old site's #180707) with a champagne highlight; deep red accent on white */
+/* Highlight alternatives, AAA on #2a0c0a: apricot #f2b27a, rosy gold #e6b38f */
 :root {
-  --dark: #180707;
-  --red: #b32323;
-  --light: #f3f3f3;
-  --muted: #7e7e7e;
-  --gap: clamp(1.5rem, 5vw, 4rem);
+  --seina: #2a0c0a;
+  --vihrea: #7a1d1a;
+  --pellava: #f4f0e9;
+  --kulta: #ead2a4;
+  --paperi: #ffffff;
+  --paperi-2: #f3f1ec;
+  --teksti: #1e1514;
+  --himmea: #3f3a34;
+  --kulta-tumma: #7a1d1a;
+  --display: "Caslon Display", Georgia, serif;
+  --serif: "Caslon Text", Georgia, serif;
+  --sans: "Albert Sans", system-ui, sans-serif;
+  --pad: clamp(1.25rem, 5vw, 4rem);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 
-body {
-  margin: 0;
-  font: 1.0625rem/1.7 "Noto Serif", Georgia, serif;
-  color: #fff;
-  background: var(--dark);
-}
-
+body { margin: 0; font: 1.125rem/1.7 var(--serif); color: var(--teksti); background: var(--paperi); }
 img { max-width: 100%; height: auto; display: block; }
-h1, h2, h3 { line-height: 1.2; font-weight: 600; }
-h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); margin: 0 0 1.5rem; }
-h3 { font-size: 1.5rem; margin: 0 0 1rem; }
-a { color: inherit; text-decoration-color: var(--red); text-underline-offset: 0.2em; }
-a:hover { color: var(--red); }
-
-.container { max-width: 72rem; margin-inline: auto; padding-inline: var(--gap); }
-.narrow { max-width: 44rem; }
-.eyebrow { color: var(--red); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.85rem; margin: 0 0 0.5rem; }
-.caps { text-transform: uppercase; letter-spacing: 0.05em; }
+p { margin: 0 0 1rem; }
+h1, h2 { font-family: var(--display); font-weight: 400; text-wrap: balance; }
+a { color: inherit; text-decoration-color: var(--vihrea); text-underline-offset: 0.2em; }
+a:hover { color: var(--kulta-tumma); }
+:focus-visible { outline: 2px solid var(--teksti); outline-offset: 3px; }
+.hero :focus-visible, .visit :focus-visible, .site-footer :focus-visible { outline-color: var(--pellava); }
+.hero a, .visit a, .site-footer a { text-decoration-color: var(--kulta); }
 .nowrap { white-space: nowrap; }
+.caps { font-size: 0.9em; letter-spacing: 0.06em; }
 
-.site-header, .site-footer {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1rem var(--gap);
-  background: var(--dark);
-  font-size: 0.875rem;
+.skip-link { font-family: var(--sans); position: absolute; left: 1rem; top: -5rem; z-index: 1; padding: 0.75rem 1rem; background: var(--pellava); color: var(--seina); }
+.skip-link:focus { top: 1rem; }
+
+/* Hero: text on the green wall, the photo fills the rest edge to edge */
+.hero { display: grid; background: var(--seina); color: var(--pellava); }
+.hero a:hover { color: var(--kulta); }
+.hero-text { display: flex; flex-direction: column; justify-content: space-between; gap: clamp(2.5rem, 7vw, 5rem); padding: clamp(1.25rem, 3vw, 2.5rem) var(--pad) clamp(2.5rem, 5vw, 4rem); }
+/* Logo as the hero's emblem: larger, gilt roof, a gilt rule separating it from the headline */
+.brand { width: fit-content; }
+.brand img { width: clamp(9rem, 14vw, 12.5rem); height: auto; }
+.brand p { margin: 1rem 0 0; padding-top: 0.9rem; border-top: 1px solid var(--kulta); white-space: nowrap; font: 0.8125rem var(--sans); letter-spacing: 0.18em; text-transform: uppercase; color: var(--pellava); }
+.hero h1 { margin: 0; font-size: clamp(2.75rem, 4.6vw, 4.75rem); line-height: 1.04; }
+.hero h1 em { display: block; margin-top: 0.35em; font: italic 400 0.55em/1.2 "Bodoni Moda", Didot, serif; color: var(--kulta); }
+.label { margin-bottom: 0.5rem; font-family: var(--sans); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--kulta); }
+.hero-dates { margin-bottom: 0.75rem; font: 400 clamp(1.6rem, 2.4vw, 2.1rem)/1.2 var(--display); }
+.hero-dates time { margin-right: 0.6em; white-space: nowrap; }
+.hero-visit > p:last-child { margin: 0; font: 1rem var(--sans); }
+.hero-photo { position: relative; aspect-ratio: 4 / 3; }
+.hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 60rem) {
+  .hero { grid-template-columns: minmax(24rem, 2fr) 3fr; min-height: min(100svh, 62rem); }
+  .hero-photo { aspect-ratio: auto; }
 }
-.site-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-.site-footer { justify-content: space-between; flex-wrap: wrap; color: #ccc; }
+
+/* Chapters: years and labels in the margin beside the text */
+section:nth-of-type(even) { background: var(--paperi-2); }
+.chapter { max-width: 76rem; margin-inline: auto; padding: clamp(3.5rem, 8vw, 7rem) var(--pad); display: grid; }
+.chapter h2 { margin: 0 0 clamp(2rem, 4vw, 3rem); font-size: clamp(2.25rem, 4.5vw, 3.75rem); line-height: 1.06; }
+.kicker { margin: 0 0 0.5rem; font: italic 1.25rem/1.4 var(--serif); color: var(--kulta-tumma); }
+.marks { margin: 0; align-items: baseline; }
+.marks dt { font: 400 1.6rem/1.15 var(--display); color: var(--kulta-tumma); }
+.marks dd { margin: 0.25rem 0 2.25rem; }
+.marks dd:last-child, .marks dd > :last-child { margin-bottom: 0; }
+.chapter > .figure, .salon, .portraits { margin-top: clamp(3rem, 6vw, 4.5rem); }
+@media (min-width: 56rem) {
+  .chapter { grid-template-columns: minmax(8rem, 1fr) minmax(0, 38rem) minmax(0, 1fr); column-gap: clamp(2rem, 4vw, 3.5rem); }
+  .chapter > * { grid-column: 2; }
+  .chapter > .salon, .chapter > .portraits { grid-column: 1 / -1; }
+  .chapter > .wide, .chapter > #vierailu-otsikko { grid-column: 2 / -1; }
+  .marks { grid-column: 1 / 3; display: grid; grid-template-columns: subgrid; }
+  .marks dt { grid-column: 1; text-align: right; }
+  .marks dd { grid-column: 2; margin-top: 0; }
+}
+
+/* Whole building photo, never cropped: as wide as fits while its height stays within the viewport */
+.building { width: min(100% - 2 * var(--pad), 130svh); margin: 0 auto; padding-top: clamp(3.5rem, 8vw, 7rem); }
+
+/* Two photos side by side, equal size, across the full chapter width */
+.salon { display: grid; gap: clamp(1rem, 2.5vw, 2rem); }
+.salon img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+@media (min-width: 40rem) { .salon { grid-template-columns: 1fr 1fr; } }
+
+.portraits { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 3rem; }
+.portraits figure { margin: 0; display: grid; gap: 1.5rem; align-items: center; }
+.portraits img { width: min(13rem, 70%); }
+@media (min-width: 40rem) { .portraits figure { grid-template-columns: 12rem 1fr; gap: 2rem; } .portraits img { width: 100%; } }
+.portraits img { height: auto; }
+.portraits figcaption { font: 0.9375rem/1.55 var(--sans); color: var(--himmea); }
+.portraits figcaption p { margin: 0 0 0.4rem; }
+.portraits strong { display: block; margin-bottom: 0.25rem; font: 700 1.0625rem/1.3 var(--serif); color: var(--teksti); }
+
+/* Visit: the green panel, set like an exhibition poster */
+section.visit { background: var(--seina); color: var(--pellava); }
+.visit a:hover { color: var(--kulta); }
+.visit .kicker, .visit .marks dt { color: var(--kulta); }
+.visit h2 { font-size: clamp(3rem, 9vw, 7rem); line-height: 0.95; }
+.date-line { font: 400 clamp(1.75rem, 3.2vw, 2.5rem)/1.25 var(--display); }
+
+#saatio { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+.board { list-style: none; margin: 0; padding: 0; }
+
+
+.site-footer { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.5rem; padding: 2.5rem var(--pad); background: var(--seina); color: var(--pellava); font: 0.875rem/1.6 var(--sans); }
 .site-footer p { margin: 0; }
-
-.hero {
-  position: relative;
-  min-height: 85svh;
-  display: grid;
-  place-items: center;
-  padding: var(--gap);
-  text-align: center;
-  background: linear-gradient(rgb(0 0 0 / 0.45), rgb(0 0 0 / 0.45)), url(img/hero.webp) center / cover;
-}
-.hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 500; margin: 0; }
-.hero h1 span { display: block; }
-.scroll-down { position: absolute; bottom: 2rem; left: 50%; translate: -50% 0; }
-
-.history { padding-block: var(--gap); }
-.history > * + * { margin-top: calc(var(--gap) * 1.5); }
-
-.split { display: grid; gap: var(--gap); align-items: center; }
-@media (min-width: 48rem) {
-  .split { grid-template-columns: 1fr 1fr; }
-  .split.reverse > :first-child { order: 2; }
-}
-
-.framed { border: 1px solid rgb(255 255 255 / 0.6); padding: 0.75rem; margin: 0; }
-
-.portraits { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; font-size: 0.875rem; }
-.portraits figcaption p { margin: 0.75rem 0 0; }
-@media (max-width: 30rem) { .portraits { grid-template-columns: 1fr; } }
-
-.visit, .contact { padding-block: calc(var(--gap) * 1.5); text-align: center; }
-.visit {
-  background: linear-gradient(rgb(24 7 7 / 0.7), rgb(24 7 7 / 0.7)), url(img/ulkoa-iso.webp) center / cover;
-}
-.visit .eyebrow { color: #fff; }
-.dates { font-size: 1.25rem; }
-
-.contact { background: #fff; color: #000; }
-.contact h3 { margin-top: 3rem; font-size: 1.25rem; }
-.email { font-size: clamp(1.25rem, 3vw, 1.75rem); color: var(--red); }
-.board { list-style: none; padding: 0; }
