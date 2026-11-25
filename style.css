@@ -72,11 +72,11 @@ section:nth-of-type(even) { background: var(--paperi-2); }
 .marks dt { font: 400 1.6rem/1.15 var(--display); color: var(--kulta-tumma); }
 .marks dd { margin: 0.25rem 0 2.25rem; }
 .marks dd:last-child, .marks dd > :last-child { margin-bottom: 0; }
-.chapter > .figure, .salon, .portraits { margin-top: clamp(3rem, 6vw, 4.5rem); }
+.portraits { margin-top: clamp(3rem, 6vw, 4.5rem); }
 @media (min-width: 56rem) {
   .chapter { grid-template-columns: minmax(8rem, 1fr) minmax(0, 38rem) minmax(0, 1fr); column-gap: clamp(2rem, 4vw, 3.5rem); }
   .chapter > * { grid-column: 2; }
-  .chapter > .salon, .chapter > .portraits { grid-column: 1 / -1; }
+  .chapter > .portraits { grid-column: 1 / -1; }
   .chapter > .wide, .chapter > #vierailu-otsikko { grid-column: 2 / -1; }
   .marks { grid-column: 1 / 3; display: grid; grid-template-columns: subgrid; }
   .marks dt { grid-column: 1; text-align: right; }
@@ -86,16 +86,27 @@ section:nth-of-type(even) { background: var(--paperi-2); }
 /* Whole building photo, never cropped: as wide as fits while its height stays within the viewport */
 .building { width: min(100% - 2 * var(--pad), 130svh); margin: 0 auto; padding-top: clamp(3.5rem, 8vw, 7rem); }
 
-/* Two photos side by side, equal size, across the full chapter width */
-.salon { display: grid; gap: clamp(1rem, 2.5vw, 2rem); }
-.salon img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
-@media (min-width: 40rem) { .salon { grid-template-columns: 1fr 1fr; } }
+figure { margin: 0; }
 
-.portraits { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 3rem; }
-.portraits figure { margin: 0; display: grid; gap: 1.5rem; align-items: center; }
-.portraits img { width: min(13rem, 70%); }
-@media (min-width: 40rem) { .portraits figure { grid-template-columns: 12rem 1fr; gap: 2rem; } .portraits img { width: 100%; } }
-.portraits img { height: auto; }
+/* Wide photos break out of the text column (max 1200px); chapters around them close up */
+.wide { width: min(100% - 2 * var(--pad), 1200px); margin: 0 auto; }
+.wide:last-child { padding-bottom: clamp(3.5rem, 8vw, 7rem); }
+.chapter:has(+ .wide) { padding-bottom: clamp(2rem, 4vw, 3rem); }
+.wide + .chapter { padding-top: clamp(2rem, 4vw, 3rem); }
+.inline-figure { margin-top: 1.5rem; max-width: 623px; }
+
+/* Click-to-enlarge */
+.zoom { display: block; cursor: zoom-in; }
+.zoom img { width: 100%; transition: opacity 0.2s; }
+.zoom:hover img { opacity: 0.92; }
+.lightbox { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; cursor: zoom-out; }
+.lightbox::backdrop { background: rgb(0 0 0 / 0.9); }
+.lightbox img { position: absolute; inset: 0; margin: auto; max-width: calc(100vw - 2rem); max-height: calc(100dvh - 5rem); width: auto; height: auto; }
+.lightbox-close { position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; border: 1px solid var(--kulta); background: var(--seina); color: var(--pellava); font: 600 1rem var(--sans); cursor: pointer; }
+.lightbox :focus-visible { outline-color: var(--pellava); }
+
+.portraits { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 3rem; }
+.portraits .zoom { width: min(100%, 20rem); margin-bottom: 1.25rem; }
 .portraits figcaption { font: 0.9375rem/1.55 var(--sans); color: var(--himmea); }
 .portraits figcaption p { margin: 0 0 0.4rem; }
 .portraits strong { display: block; margin-bottom: 0.25rem; font: 700 1.0625rem/1.3 var(--serif); color: var(--teksti); }
