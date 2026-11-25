@@ -31,6 +31,7 @@
         <p class="label">Kesän 2026 aukiolopäivät · <span class="nowrap">klo 12–15</span></p>
         <p class="hero-dates"><time datetime="2026-06-21">su 21.6.</time> <time datetime="2026-07-19">su 19.7.</time> <time datetime="2026-08-16">su 16.8.</time></p>
         <p>Vapaa pääsy · <a href="#vierailu">Sijainti ja ryhmävaraukset</a></p>
+        <p><a class="tour-link" href="#virtuaalikierros">Virtuaalikierros 360°</a></p>
       </div>
     </div>
     <div class="hero-photo"><img src="img/hero-1400.webp" srcset="img/hero-800.webp 800w, img/hero-1400.webp 1400w, img/hero-2000.webp 2000w" sizes="(min-width: 60rem) 62vw, 100vw" alt="Salmelan tupa: hirsiseinät, kangaspuut, rukki ja pitkät pöydät" width="2000" height="1500" fetchpriority="high"></div>
@@ -70,6 +71,21 @@
           <img src="img/tupa-1400.webp" srcset="img/tupa-800.webp 800w, img/tupa-1400.webp 1400w" sizes="(min-width: 40rem) 50vw, 100vw" alt="Salmelan tupa auringonvalossa: rukki, kangaspuut, pöydät ja hella" width="1400" height="933" loading="lazy">
           <img src="img/piha-623.webp" alt="Salmelan päärakennus ja nurmipiha kesällä" width="623" height="410" loading="lazy">
         </div>
+      </div>
+    </section>
+
+    <section id="virtuaalikierros" class="tour" aria-labelledby="kierros-otsikko">
+      <div class="chapter">
+        <p class="kicker">Kurkista sisään</p>
+        <h2 id="kierros-otsikko">Virtuaalikierros</h2>
+        <p>Tutustu Salmelan huoneisiin <span class="nowrap">360°-kuvina</span> jo ennen vierailua.</p>
+        <div class="tour-frame">
+          <a class="tour-start" href="https://kuula.co/share/collection/7Jwl7?logo=0&amp;info=0&amp;fs=1&amp;vr=1&amp;zoom=1&amp;sd=1&amp;initload=0&amp;thumbs=1" data-embed="https://kuula.co/share/collection/7Jwl7?logo=0&amp;info=0&amp;fs=1&amp;vr=1&amp;zoom=1&amp;sd=1&amp;initload=1&amp;thumbs=1" target="_blank" rel="noopener">
+            <img src="img/hero-1400.webp" srcset="img/hero-800.webp 800w, img/hero-1400.webp 1400w, img/hero-2000.webp 2000w" sizes="(min-width: 56rem) 76rem, 100vw" alt="" width="2000" height="1500" loading="lazy">
+            <span class="tour-button">Aloita virtuaalikierros<span class="visually-hidden new-tab"> (avautuu uuteen välilehteen)</span></span>
+          </a>
+        </div>
+        <p class="tour-alt"><a href="https://kuula.co/share/collection/7Jwl7?logo=0&amp;info=0&amp;fs=1&amp;vr=1&amp;zoom=1&amp;sd=1&amp;initload=0&amp;thumbs=1" target="_blank" rel="noopener">Avaa virtuaalikierros koko näytölle<span class="visually-hidden new-tab"> (avautuu uuteen välilehteen)</span></a></p>
       </div>
     </section>
 
@@ -173,5 +189,21 @@
     <img src="img/logo.svg" alt="Salmelan Rustholli" width="96" height="79" loading="lazy">
     <p>Oravalantie 243, 03100 Vihti<br>© Pirkko ja Reino Ritvalan Salmela-säätiö sr</p>
   </footer>
+  <script>
+    // Load the Kuula tour inline only on click (no third-party requests before that); small screens open it in a new tab
+    const wide = matchMedia('(min-width: 48rem)');
+    for (const a of document.querySelectorAll('.tour-start')) {
+      if (wide.matches) a.querySelector('.new-tab')?.remove();
+      a.addEventListener('click', e => {
+        if (!wide.matches) return;
+        e.preventDefault();
+        const f = document.createElement('iframe');
+        Object.assign(f, { src: a.dataset.embed, title: 'Salmelan Rustholli – virtuaalikierros', allowFullscreen: true });
+        f.allow = 'fullscreen; xr-spatial-tracking; gyroscope; accelerometer';
+        a.replaceWith(f);
+        f.focus();
+      });
+    }
+  </script>
 </body>
 </html>
