@@ -103,23 +103,26 @@ section:nth-of-type(even) { background: var(--paperi-2); }
 /* Virtual tour: dark band, poster that loads the Kuula embed on click */
 section.tour { background: var(--seina); color: var(--pellava); }
 .tour .kicker { color: var(--kulta); }
-.tour .chapter h2 { margin-bottom: 1rem; }
-.tour-frame { position: relative; margin-top: clamp(2rem, 4vw, 3rem); aspect-ratio: 4 / 3; background: #000; }
+.tour .chapter { padding-bottom: clamp(1.75rem, 3vw, 2.5rem); }
+.tour .chapter h2 { margin-bottom: 0.75rem; }
+.tour .chapter > p:last-child { margin: 0; }
+/* As wide as fits (max 100rem) while a 16:9 view still fits the screen height */
+.tour-wide { width: min(100% - 2 * var(--pad), 100rem, (100svh - 7rem) * 16 / 9); margin-inline: auto; padding-bottom: clamp(3.5rem, 8vw, 7rem); }
+.tour-frame { position: relative; aspect-ratio: 4 / 3; background: #000; }
 .tour-frame > * { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .tour-start img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: filter 0.2s; }
 .tour-start:hover img, .tour-start:focus-visible img { filter: brightness(0.85); }
 .tour-button { position: absolute; left: 50%; top: 50%; translate: -50% -50%; padding: 0.9rem 1.5rem; background: var(--kulta); color: var(--seina); font: 600 1.0625rem var(--sans); white-space: nowrap; }
-.tour-button::before { content: "▶"; margin-right: 0.6em; font-size: 0.8em; }
-.tour-alt { margin: 1rem 0 0; font: 1rem var(--sans); }
+.tour-button::before { content: "▶" / ""; margin-right: 0.6em; font-size: 0.8em; }
+.tour-alt { margin: 0.75rem 0 0; text-align: right; font: 0.9375rem var(--sans); }
+.tour-alt a::after { content: " ↗" / ""; }
 .tour a, .tour-link { color: var(--pellava); text-decoration-color: var(--kulta); }
 .tour :focus-visible { outline-color: var(--pellava); }
 .tour-link { display: inline-block; margin-top: 1rem; padding: 0.55rem 1.1rem; border: 1px solid var(--kulta); text-decoration: none; font: 600 1rem var(--sans); }
-.tour-link::before { content: "▶"; margin-right: 0.5em; font-size: 0.75em; color: var(--kulta); }
+.tour-link::before { content: "▶" / ""; margin-right: 0.5em; font-size: 0.75em; color: var(--kulta); }
 .tour-link:hover { background: var(--kulta); color: var(--seina); }
 .tour-link:hover::before { color: var(--seina); }
-@media (min-width: 56rem) {
-  .chapter > .tour-frame { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
-}
+@media (min-width: 48rem) { .tour-frame { aspect-ratio: 16 / 9; } }
 
 /* Visit: the green panel, set like an exhibition poster */
 section.visit { background: var(--seina); color: var(--pellava); }
