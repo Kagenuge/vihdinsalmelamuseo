@@ -15,3 +15,4 @@ python3 -m http.server 8000   # http://localhost:8000
 - Fonts are self-hosted (Libre Caslon Display and Text, Bodoni Moda italic for the hero subtitle, Albert Sans for small labels; latin subset), so there are no third-party requests and no cookie banner is needed.
 - Custom domain: add a `CNAME` file containing `www.vihdinsalmelamuseo.fi` only at DNS cutover. Before that it would redirect the github.io preview to a domain that doesn't point here yet.
 - Images: each photo comes in a few widths (`img/<name>-<width>.webp`) for `srcset`. To add more, resize the original to WebP at quality ~72, e.g. with `sharp`.
+- `videot/`: unlisted (noindex) preview of the site with a Videot section, copied from the local `kokeilu-videot` branch. It has its own `index.html` and `style.css` plus `img/video-*` thumbnails; other assets are shared via `../`.

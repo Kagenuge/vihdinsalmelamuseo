@@ -1,0 +1,168 @@
+@font-face { font-family: "Bodoni Moda"; src: url(../fonts/bodoni-moda-italic.woff2) format("woff2"); font-weight: 400 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Caslon Display"; src: url(../fonts/caslon-display.woff2) format("woff2"); font-display: swap; }
+@font-face { font-family: "Caslon Text"; src: url(../fonts/caslon-text.woff2) format("woff2"); font-display: swap; }
+@font-face { font-family: "Caslon Text"; src: url(../fonts/caslon-text-bold.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Caslon Text"; src: url(../fonts/caslon-text-italic.woff2) format("woff2"); font-style: italic; font-display: swap; }
+@font-face { font-family: "Albert Sans"; src: url(../fonts/albert-sans.woff2) format("woff2"); font-weight: 300 800; font-display: swap; }
+
+/* Oxblood panels (a redder take on the old site's #180707) with a champagne highlight; deep red accent on white */
+/* Highlight alternatives, AAA on #2a0c0a: apricot #f2b27a, rosy gold #e6b38f */
+:root {
+  --seina: #2a0c0a;
+  --vihrea: #7a1d1a;
+  --pellava: #f4f0e9;
+  --kulta: #ead2a4;
+  --paperi: #ffffff;
+  --paperi-2: #f3f1ec;
+  --teksti: #1e1514;
+  --himmea: #3f3a34;
+  --kulta-tumma: #7a1d1a;
+  --display: "Caslon Display", Georgia, serif;
+  --serif: "Caslon Text", Georgia, serif;
+  --sans: "Albert Sans", system-ui, sans-serif;
+  --pad: clamp(1.25rem, 5vw, 4rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+body { margin: 0; font: 1.125rem/1.7 var(--serif); color: var(--teksti); background: var(--paperi); }
+img { max-width: 100%; height: auto; display: block; }
+p { margin: 0 0 1rem; }
+h1, h2 { font-family: var(--display); font-weight: 400; text-wrap: balance; }
+a { color: inherit; text-decoration-color: var(--vihrea); text-underline-offset: 0.2em; }
+a:hover { color: var(--kulta-tumma); }
+:focus-visible { outline: 2px solid var(--teksti); outline-offset: 3px; }
+.hero :focus-visible, .visit :focus-visible, .site-footer :focus-visible { outline-color: var(--pellava); }
+.hero a, .visit a, .site-footer a { text-decoration-color: var(--kulta); }
+.nowrap { white-space: nowrap; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.caps { font-size: 0.9em; letter-spacing: 0.06em; }
+
+.skip-link { font-family: var(--sans); position: absolute; left: 1rem; top: -5rem; z-index: 1; padding: 0.75rem 1rem; background: var(--pellava); color: var(--seina); }
+.skip-link:focus { top: 1rem; }
+
+/* Hero: text on the green wall, the photo fills the rest edge to edge */
+.hero { display: grid; background: var(--seina); color: var(--pellava); }
+.hero a:hover { color: var(--kulta); }
+.hero-text { display: flex; flex-direction: column; justify-content: space-between; gap: clamp(2.5rem, 7vw, 5rem); padding: clamp(1.25rem, 3vw, 2.5rem) var(--pad) clamp(2.5rem, 5vw, 4rem); }
+/* Logo as the hero's emblem: larger, gilt roof, a gilt rule separating it from the headline */
+.brand { width: fit-content; }
+.brand img { width: clamp(9rem, 14vw, 12.5rem); height: auto; }
+.brand p { margin: 1rem 0 0; padding-top: 0.9rem; border-top: 1px solid var(--kulta); white-space: nowrap; font: 0.8125rem var(--sans); letter-spacing: 0.18em; text-transform: uppercase; color: var(--pellava); }
+.hero h1 { margin: 0; font-size: clamp(2.75rem, 4.6vw, 4.75rem); line-height: 1.04; }
+.hero h1 em { display: block; margin-top: 0.35em; font: italic 400 0.55em/1.2 "Bodoni Moda", Didot, serif; color: var(--kulta); }
+.label { margin-bottom: 0.5rem; font-family: var(--sans); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--kulta); }
+.hero-dates { margin-bottom: 0.75rem; font: 400 clamp(1.6rem, 2.4vw, 2.1rem)/1.2 var(--display); }
+.hero-dates time { margin-right: 0.6em; white-space: nowrap; }
+.hero-visit > p:not(.label, .hero-dates) { margin: 0; font: 1rem var(--sans); }
+.hero-photo { position: relative; aspect-ratio: 4 / 3; }
+.hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 60rem) {
+  .hero { grid-template-columns: minmax(24rem, 2fr) 3fr; min-height: min(100svh, 62rem); }
+  .hero-photo { aspect-ratio: auto; }
+}
+
+/* Chapters: years and labels in the margin beside the text */
+section:nth-of-type(even) { background: var(--paperi-2); }
+.chapter { max-width: 76rem; margin-inline: auto; padding: clamp(3.5rem, 8vw, 7rem) var(--pad); display: grid; }
+.chapter h2 { margin: 0 0 clamp(2rem, 4vw, 3rem); font-size: clamp(2.25rem, 4.5vw, 3.75rem); line-height: 1.06; }
+.kicker { margin: 0 0 0.5rem; font: italic 1.25rem/1.4 var(--serif); color: var(--kulta-tumma); }
+.marks { margin: 0; align-items: baseline; }
+.marks dt { font: 400 1.6rem/1.15 var(--display); color: var(--kulta-tumma); }
+.marks dd { margin: 0.25rem 0 2.25rem; }
+.marks dd:last-child, .marks dd > :last-child { margin-bottom: 0; }
+.portraits { margin-top: clamp(3rem, 6vw, 4.5rem); }
+@media (min-width: 56rem) {
+  .chapter { grid-template-columns: minmax(8rem, 1fr) minmax(0, 38rem) minmax(0, 1fr); column-gap: clamp(2rem, 4vw, 3.5rem); }
+  .chapter > * { grid-column: 2; }
+  .chapter > .portraits { grid-column: 1 / -1; }
+  .chapter > .wide, .chapter > #vierailu-otsikko { grid-column: 2 / -1; }
+  .marks { grid-column: 1 / 3; display: grid; grid-template-columns: subgrid; }
+  .marks dt { grid-column: 1; text-align: right; }
+  .marks dd { grid-column: 2; margin-top: 0; }
+}
+
+/* Whole building photo, never cropped: as wide as fits while its height stays within the viewport */
+.building { width: min(100% - 2 * var(--pad), 130svh); margin: 0 auto; padding-top: clamp(3.5rem, 8vw, 7rem); }
+
+figure { margin: 0; }
+
+/* Wide photos break out of the text column (max 1200px); chapters around them close up */
+.wide { width: min(100% - 2 * var(--pad), 1200px); margin: 0 auto; }
+.wide:last-child { padding-bottom: clamp(3.5rem, 8vw, 7rem); }
+.chapter:has(+ .wide) { padding-bottom: clamp(2rem, 4vw, 3rem); }
+.wide + .chapter { padding-top: clamp(2rem, 4vw, 3rem); }
+.inline-figure { margin-top: 1.5rem; max-width: 623px; }
+
+/* Click-to-enlarge */
+.zoom { display: block; cursor: zoom-in; }
+.zoom img { width: 100%; }
+.lightbox { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; cursor: zoom-out; }
+.lightbox::backdrop { background: rgb(0 0 0 / 0.9); }
+.lightbox img { position: absolute; inset: 0; margin: auto; max-width: calc(100vw - 2rem); max-height: calc(100dvh - 5rem); width: auto; height: auto; }
+.lightbox-close { position: absolute; top: 1rem; right: 1rem; padding: 0.5rem 1rem; border: 1px solid var(--kulta); background: var(--seina); color: var(--pellava); font: 600 1rem var(--sans); cursor: pointer; }
+.lightbox :focus-visible { outline-color: var(--pellava); }
+
+.portraits { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 3rem; }
+.portraits .zoom { width: min(100%, 20rem); margin-bottom: 1.25rem; }
+.portraits figcaption { font: 0.9375rem/1.55 var(--sans); color: var(--himmea); }
+.portraits figcaption p { margin: 0 0 0.4rem; }
+.portraits strong { display: block; margin-bottom: 0.25rem; font: 700 1.0625rem/1.3 var(--serif); color: var(--teksti); }
+
+/* Virtual tour: dark band, poster that loads the Kuula embed on click */
+section.tour { background: var(--seina); color: var(--pellava); }
+.tour .kicker { color: var(--kulta); }
+/* Heading lines up with the left edge of the player below it */
+.tour .chapter { display: block; max-width: none; padding-inline: 0; padding-bottom: clamp(1.75rem, 3vw, 2.5rem); }
+.tour .chapter > p { max-width: 38rem; }
+.tour .chapter h2 { margin-bottom: 0.75rem; }
+.tour .chapter > p:last-child { margin: 0; }
+/* As wide as fits (max 1200px) while a 16:9 view still fits the screen height */
+.tour .chapter, .tour-wide { width: min(100% - 2 * var(--pad), 1200px, (100svh - 7rem) * 16 / 9); margin-inline: auto; }
+.tour-wide { padding-bottom: clamp(3.5rem, 8vw, 7rem); }
+.tour-frame { position: relative; aspect-ratio: 4 / 3; background: #000; }
+.tour-frame > * { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.tour-start img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: filter 0.2s; }
+.tour-start:hover img, .tour-start:focus-visible img { filter: brightness(0.85); }
+.tour-button { position: absolute; left: 50%; top: 50%; translate: -50% -50%; padding: 0.9rem 1.5rem; background: var(--kulta); color: var(--seina); font: 600 1.0625rem var(--sans); white-space: nowrap; }
+.tour-button::before { content: "▶" / ""; margin-right: 0.6em; font-size: 0.8em; }
+.tour-alt { margin: 0.75rem 0 0; text-align: right; font: 0.9375rem var(--sans); }
+.tour-alt a::after { content: " ↗" / ""; }
+.tour a, .tour-link { color: var(--pellava); text-decoration-color: var(--kulta); }
+.tour :focus-visible { outline-color: var(--pellava); }
+.tour-link { display: inline-block; margin-top: 1rem; padding: 0.55rem 1.1rem; border: 1px solid var(--kulta); text-decoration: none; font: 600 1rem var(--sans); }
+.tour-link::before { content: "▶" / ""; margin-right: 0.5em; font-size: 0.75em; color: var(--kulta); }
+.tour-link:hover { background: var(--kulta); color: var(--seina); }
+.tour-link:hover::before { color: var(--seina); }
+@media (min-width: 48rem) { .tour-frame { aspect-ratio: 16 / 9; } }
+
+/* Videos: main player as wide as the tour, the list below picks which video plays */
+.tour + .tour .chapter { padding-top: 0; }
+.video-frame { position: relative; aspect-ratio: 16 / 9; background: #000; }
+.video-frame > * { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-start, .video-pick { padding: 0; border: 0; background: none; color: inherit; cursor: pointer; }
+.video-start img, .video-pick img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: filter 0.2s; }
+.video-start:hover img, .video-start:focus-visible img, .video-pick:hover img, .video-pick:focus-visible img { filter: brightness(0.85); }
+.video-now { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.25rem 1rem; margin: 0.75rem 0 0; font: 1.25rem/1.4 var(--serif); }
+.video-now a { font: 0.9375rem var(--sans); }
+.video-now a::after { content: " ↗" / ""; }
+.video-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 9rem), 1fr)); gap: 1.25rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+.video-pick { display: block; width: 100%; text-align: left; font: 1rem/1.4 var(--serif); }
+.video-pick img { aspect-ratio: 16 / 9; height: auto; margin-bottom: 0.5rem; outline: 2px solid transparent; outline-offset: 2px; }
+.video-pick[aria-current] img { outline-color: var(--kulta); filter: none; }
+@media (min-width: 48rem) { .video-list { grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1.5rem; } }
+
+/* Visit: the green panel, set like an exhibition poster */
+section.visit { background: var(--seina); color: var(--pellava); }
+.visit a:hover { color: var(--kulta); }
+.visit .kicker, .visit .marks dt { color: var(--kulta); }
+.visit h2 { font-size: clamp(3rem, 9vw, 7rem); line-height: 0.95; }
+.date-line { font: 400 clamp(1.75rem, 3.2vw, 2.5rem)/1.25 var(--display); }
+
+#saatio { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+.board { list-style: none; margin: 0; padding: 0; }
+
+
+.site-footer { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.5rem; padding: 2.5rem var(--pad); background: var(--seina); color: var(--pellava); font: 0.875rem/1.6 var(--sans); }
+.site-footer p { margin: 0; }
