@@ -97,8 +97,7 @@ figure { margin: 0; }
 
 /* Click-to-enlarge */
 .zoom { display: block; cursor: zoom-in; }
-.zoom img { width: 100%; transition: opacity 0.2s; }
-.zoom:hover img { opacity: 0.92; }
+.zoom img { width: 100%; }
 .lightbox { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; cursor: zoom-out; }
 .lightbox::backdrop { background: rgb(0 0 0 / 0.9); }
 .lightbox img { position: absolute; inset: 0; margin: auto; max-width: calc(100vw - 2rem); max-height: calc(100dvh - 5rem); width: auto; height: auto; }
