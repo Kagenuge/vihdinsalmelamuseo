@@ -36,6 +36,7 @@ a:hover { color: var(--kulta-tumma); }
 .hero :focus-visible, .visit :focus-visible, .site-footer :focus-visible { outline-color: var(--pellava); }
 .hero a, .visit a, .site-footer a { text-decoration-color: var(--kulta); }
 .nowrap { white-space: nowrap; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .caps { font-size: 0.9em; letter-spacing: 0.06em; }
 
 .skip-link { font-family: var(--sans); position: absolute; left: 1rem; top: -5rem; z-index: 1; padding: 0.75rem 1rem; background: var(--pellava); color: var(--seina); }
