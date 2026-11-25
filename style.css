@@ -106,8 +106,8 @@ section.tour { background: var(--seina); color: var(--pellava); }
 .tour .chapter { padding-bottom: clamp(1.75rem, 3vw, 2.5rem); }
 .tour .chapter h2 { margin-bottom: 0.75rem; }
 .tour .chapter > p:last-child { margin: 0; }
-/* As wide as fits (max 100rem) while a 16:9 view still fits the screen height */
-.tour-wide { width: min(100% - 2 * var(--pad), 100rem, (100svh - 7rem) * 16 / 9); margin-inline: auto; padding-bottom: clamp(3.5rem, 8vw, 7rem); }
+/* As wide as fits (max 1200px) while a 16:9 view still fits the screen height */
+.tour-wide { width: min(100% - 2 * var(--pad), 1200px, (100svh - 7rem) * 16 / 9); margin-inline: auto; padding-bottom: clamp(3.5rem, 8vw, 7rem); }
 .tour-frame { position: relative; aspect-ratio: 4 / 3; background: #000; }
 .tour-frame > * { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .tour-start img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); transition: filter 0.2s; }
